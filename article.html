@@ -8,9 +8,9 @@
 		<link rel="icon" href="images/favicon.jpg">
 	</head>
 	<body>
-		<header>
-			<div class="curved-background">
-				<div class="curved-background__curved">
+		<header onclick="location.href = './'">
+			<div class="circle">
+				<div class="circle-circle">
 					<div style="padding-top: 3em" class="centering">
 						<img height="100" src="images/logo.png">
 					</div>
@@ -23,11 +23,11 @@
 		</header>
 
     <article>
-        <h4>귀여운 고양이</h4>
+        <h4 id="articleTitle">Loading...</h4>
         <section class="articleText">
-            <img src="images/cat.jpg">
+            <img id="articleImage" src="images/cat.jpg">
             <br>
-            <p>고양이는 귀엽다.</p>
+            <p id="articleText">Loading...</p>
         </section>
     </article>
 		
@@ -37,3 +37,62 @@
 		</footer>
 	</body>
 </html>
+
+<script>
+function getParameterByName(name) {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+  results = regex.exec(location.search);
+  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+var articleNo = getParameterByName('n');
+
+	switch (articleNo) {
+		case '1':
+			Atitle = '귀여운 고양이';
+			Atext = '고양이는 귀엽다.';
+			Aimg = 'images/cat.jpg';
+			break;
+
+		case '2':
+			Atitle = '동적 콘텐츠를 넣어주세요.';
+			Atext = 'Dynamic Contents Goes Here. Dynamic Contents Goes Here. Dynamic Contents Goes Here.';
+			Aimg = 'images/peoples.jpg';
+			break;
+
+		case '3':
+			Atitle = '글꼴 사용법';
+			Atext = '많은 글꼴이 있고, 그 중에서도 이 페이지에 사용된 글꼴은 앨리스 디지털 배움체, 카페24 써라운드 / 써라운드 에어체입니다.';
+			Aimg = 'images/font.jpg';
+			break;
+
+		case '4':
+			Atitle = '10/17 급식표';
+			Atext = '10월 17일 점심은 곤드레나물밥입니다. 참고하세요. 북어무국, 치커리사과초무침, 수제떡갈비, 배추김치와 초코바가 나옵니다.';
+			Aimg = 'images/gallery_02.png';
+			break;
+
+		case '5':
+			Atitle = '2022학년도 수업 시간표';
+			Atext = '2학년 9반 담당교사입니다. 참고하세요.';
+			Aimg = 'images/gallery_01.png';
+			break;
+
+		case '6':
+			Atitle = '';
+			Atext = '';
+			Aimg = '';
+			break;
+	
+		default:
+			alert('요청하신 게시글을 찾을 수 없습니다.');
+			throw "404 Not found."
+			break;
+	}
+
+	if(Atitle){
+		document.getElementById('articleTitle').innerHTML = Atitle;
+		document.getElementById('articleText').innerHTML = Atext;
+		document.getElementById('articleImage').src = Aimg;
+	}
+</script>
